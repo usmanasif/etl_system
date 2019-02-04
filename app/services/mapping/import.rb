@@ -55,8 +55,7 @@ module Mapping
           report_filename = [file_basename, '_report', file_extension].join
           report_file_path = [reports_folder_name, report_filename].join('/')
 
-          FileUtils.remove_dir(reports_folder_name) if Dir.exist?(reports_folder_name)
-          FileUtils.mkdir(reports_folder_name)
+          FileUtils.mkdir(reports_folder_name) unless Dir.exist?(reports_folder_name)
 
           CSV.open(report_file_path, 'w') do |file|
             file << if changes_are_made
