@@ -3,16 +3,16 @@ module Mapping
     class << self
       attr_accessor :folder_name, :filename, :changes_are_made, :file_headers, :track_changes
 
-      def call!(directory, mapping_definition=:csv_mapping_1)
-        @folder_name = directory
+      def call!(options)
+        @folder_name = options[:directory]
 
-        POSSIBLE_CSV_DEFINITIONS[mapping_definition].each do |filename|
+        POSSIBLE_CSV_DEFINITIONS[options[:mapping_definition]].each do |filename|
           @filename = filename
           @track_changes = []
 
           begin
             import_file
-            generate_report
+            generate_report(options[:reporting_folder])
 
           rescue NameError
             raise "Mapping for #{filename} is not defined!"
@@ -55,9 +55,9 @@ module Mapping
           end
         end
 
-        def generate_report
+        def generate_report(reporting_folder)
           file_headers.map! { |value| value == 'id' && 'reference_id' || value }.push('Error/Success')
-          reports_folder_name = ['csv_files_1', 'reports'].join('_')
+          reports_folder_name = reporting_folder
           report_filename = [file_basename, '_report', file_extension].join
           report_file_path = [reports_folder_name, report_filename].join('/')
 
