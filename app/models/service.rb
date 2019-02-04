@@ -5,4 +5,5 @@ class Service < ApplicationRecord
   has_many :appointments, through: :appointment_services
 
   validates :name, presence: true, length: { maximum: NAME_MAX_LENGTH }
+  validates :reference_id, uniqueness: { message: 'Already Loaded' }
 end

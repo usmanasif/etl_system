@@ -19,11 +19,12 @@ end
 class AppointmentMapper
   extend HashMapper
 
+  map from('id'), to('reference_id')
   map from('begin_at'), to('begin_at')
   map from('end_at'), to('end_at')
 
   after_normalize do |input, output|
-    output['client_id'] = Client.find_by(name: input['client_name'])&.id
+    output['client_id'] = Client.find_by(reference_id: input['client_id'])&.id
     output
   end
 end

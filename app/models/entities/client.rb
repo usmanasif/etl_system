@@ -19,6 +19,7 @@ end
 class ClientMapper
   extend HashMapper
 
+  map from('id'), to('reference_id')
   map from('name'), to('name')
   map from('email'), to('email')
 end

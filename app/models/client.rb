@@ -5,4 +5,5 @@ class Client < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: NAME_MAX_LENGTH }
   validates :email, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :reference_id, uniqueness: { message: 'Already Loaded' }
 end

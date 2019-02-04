@@ -19,5 +19,6 @@ end
 class ServiceMapper
   extend HashMapper
 
+  map from('id'), to('reference_id')
   map from('name'), to('name')
 end
