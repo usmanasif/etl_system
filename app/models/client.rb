@@ -4,5 +4,5 @@ class Client < ApplicationRecord
   has_many :appointments
 
   validates :name, presence: true, length: { maximum: NAME_MAX_LENGTH }
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :email, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 end
