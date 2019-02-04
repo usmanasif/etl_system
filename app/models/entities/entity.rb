@@ -17,6 +17,12 @@ module Entities
         raise 'Not implemented!'
       end
 
+      def import(params)
+        record = internal_model.new mapper.normalize(params)
+
+        record.save && success_response || failure_response(record)
+      end
+
       def success_response
         { status: :success }
       end

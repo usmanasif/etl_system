@@ -10,19 +10,13 @@ module Entities
       end
 
       def mapper
-        ClientMapper
-      end
-
-      def import(params)
-        record = internal_model.new mapper.normalize(params)
-
-        record.save && success_response || failure_response(record)
+        ServiceMapper
       end
     end
   end
 end
 
-class ClientMapper
+class ServiceMapper
   extend HashMapper
 
   map from('name'), to('name')

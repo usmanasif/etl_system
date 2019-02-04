@@ -12,12 +12,6 @@ module Entities
       def mapper
         ClientMapper
       end
-
-      def import(params)
-        record = internal_model.new mapper.normalize(params)
-
-        record.save && success_response || failure_response(record)
-      end
     end
   end
 end

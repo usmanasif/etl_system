@@ -3,10 +3,10 @@ module Mapping
     class << self
       attr_accessor :folder_name, :filename, :changes_are_made, :file_headers, :track_failures
 
-      def call!(directory)
+      def call!(directory, mapping_definition=:csv_mapping_1)
         @folder_name = directory
 
-        Dir.open(folder_name).each do |filename| next if File.directory?(filename)
+        POSSIBLE_CSV_DEFINITIONS[mapping_definition].each do |filename|
           @filename = filename
           @track_failures = []
 
