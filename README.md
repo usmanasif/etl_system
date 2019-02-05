@@ -24,7 +24,7 @@
 ------------
 
 ### Tracking Procedure
-- I have set three different types of statuses when we import data.
+- I have set three different types of statuses when we import data. Else we just show up the error in `status` column if any validation gets failed.
 
   `not_changed` -> if record is already mapped in our internal db.
 
