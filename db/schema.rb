@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_04_130430) do
+ActiveRecord::Schema.define(version: 2019_02_05_002117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,9 @@ ActiveRecord::Schema.define(version: 2019_02_04_130430) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "reference_id"
+    t.bigint "company_id"
     t.index ["appointment_id"], name: "index_appointment_services_on_appointment_id"
+    t.index ["company_id"], name: "index_appointment_services_on_company_id"
     t.index ["reference_id"], name: "index_appointment_services_on_reference_id"
     t.index ["service_id"], name: "index_appointment_services_on_service_id"
   end
@@ -33,7 +35,9 @@ ActiveRecord::Schema.define(version: 2019_02_04_130430) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "reference_id"
+    t.bigint "company_id"
     t.index ["client_id"], name: "index_appointments_on_client_id"
+    t.index ["company_id"], name: "index_appointments_on_company_id"
     t.index ["reference_id"], name: "index_appointments_on_reference_id"
   end
 
@@ -43,6 +47,8 @@ ActiveRecord::Schema.define(version: 2019_02_04_130430) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "reference_id"
+    t.bigint "company_id"
+    t.index ["company_id"], name: "index_clients_on_company_id"
     t.index ["email"], name: "index_clients_on_email"
     t.index ["reference_id"], name: "index_clients_on_reference_id"
   end
@@ -58,6 +64,8 @@ ActiveRecord::Schema.define(version: 2019_02_04_130430) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "reference_id"
+    t.bigint "company_id"
+    t.index ["company_id"], name: "index_services_on_company_id"
     t.index ["reference_id"], name: "index_services_on_reference_id"
   end
 

@@ -6,6 +6,8 @@ module Mapping
       def call!(options)
         @folder_name = options[:directory]
 
+        Current.company = Company.find_by(id: options[:company_id]) || Company.first
+
         POSSIBLE_CSV_DEFINITIONS[options[:mapping_definition]].each do |filename|
           @filename = filename
           @track_changes = []
