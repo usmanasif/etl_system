@@ -10,26 +10,33 @@
 
 ### Command Line Scripts (Rake Tasks)
 - **Import**
-command:`rake 'import[<input_directory>, <mapping_definition>, <reporting_folder>, <company_id>]'`
-e.g`rake 'import[csv_files_1, csv_mapping_1, csv_files_1_reports, 1]'`
+
+  command:`rake 'import[<input_directory>, <mapping_definition>, <reporting_folder>, <company_id>]'`
+
+  e.g`rake 'import[csv_files_1, csv_mapping_1, csv_files_1_reports, 1]'`
 
 - **Export**
-command:`rake 'export[<export_files_folder>, <mapping_definition>, <company_id>]`'
-e.g`rake 'export[csv_export_files_1, csv_mapping_1, 1]'`
+
+  command:`rake 'export[<export_files_folder>, <mapping_definition>, <company_id>]`'
+
+  e.g`rake 'export[csv_export_files_1, csv_mapping_1, 1]'`
 
 ------------
 
 ### Tracking Procedure
 - I have set three different types of statuses when we import data.
-`not_changed` -> if record is already mapped in our internal db.
-`updated` -> if record is updated in the external db and we successfully update the record in our internal db.
-`created` -> if record is freshly inserted in our internal db.
+
+  `not_changed` -> if record is already mapped in our internal db.
+
+  `updated` -> if record is updated in the external db and we successfully update the record in our internal db.
+
+  `created` -> if record is freshly inserted in our internal db.
 
 ------------
 ### Reporting File Example (created by our system)
-| Changes had been done  |   | | |
-| ------------ | ------------ |
-| reference_id | name  | email | Status |
-| 11 | Usman  | usman@gmail.com | not_changed
-| 66 | Johnson Baby | johnson@gmail.com | updated |
-| 88 | Mojo Jojo | jojo@gmail.com | created
+| Changes had been done  | | | |
+| ------------ | ------------ | ------------| ------------|
+| **reference_id** | **name**  | **email** | **Status** |
+| 11 | Usman  | usman@gmail.com | `not_changed` |
+| 66 | Johnson Baby | johnson@gmail.com | `updated` |
+| 88 | Mojo Jojo | jojo@gmail.com | `created` |
