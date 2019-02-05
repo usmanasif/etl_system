@@ -18,9 +18,24 @@ module Entities
       end
 
       def import(params)
-        record = internal_model.new mapper.normalize(params)
+        mapped_params = mapper.normalize(params)
+        existed_record = internal_model.find_by(reference_id: mapped_params[:reference_id])
 
-        record.save && success_response || failure_response(record)
+        if existed_record.present?
+          old_attributes = existed_record.attributes
+
+          existed_record.update(mapped_params.except(:reference_id))
+
+          if existed_record.attributes == old_attributes
+            not_changed_response
+          else
+            updated_response
+          end
+        else
+          record = internal_model.new mapped_params
+
+          record.save && created_response || failure_response(record)
+        end
       end
 
       def export_file_headers
@@ -31,12 +46,20 @@ module Entities
         mapper.denormalize(params).values
       end
 
-      def success_response
-        { status: :success }
+      def created_response
+        { status: :success, message: :created }
+      end
+
+      def updated_response
+        { status: :success, message: :updated }
       end
 
       def failure_response record
         { status: :failure, message: record.errors.full_messages.to_sentence }
+      end
+
+      def not_changed_response
+        { status: :failure, message: :not_changed }
       end
     end
   end

@@ -50,7 +50,7 @@ module Mapping
             if response[:status] == :success
               @changes_are_made ||= true
 
-              track_changes << row.fields + [response[:status]]
+              track_changes << row.fields + [response[:message]]
             else
               track_changes << row.fields + [response[:message]]
             end
@@ -58,7 +58,7 @@ module Mapping
         end
 
         def generate_report(reporting_folder)
-          file_headers.map! { |value| value == 'id' && 'reference_id' || value }.push('Error/Success')
+          file_headers.map! { |value| value == 'id' && 'reference_id' || value }.push('Status')
           reports_folder_name = reporting_folder
           report_filename = [file_basename, '_report', file_extension].join
           report_file_path = [reports_folder_name, report_filename].join('/')
