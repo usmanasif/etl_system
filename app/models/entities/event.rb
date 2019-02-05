@@ -27,4 +27,9 @@ class EventMapper
     output['client_id'] = Client.find_by(reference_id: input['customer_id'])&.id
     output
   end
+
+  after_normalize do |input, output|
+    output['customer_id'] = Client.find_by(id: input['client_id'])&.reference_id
+    output
+  end
 end

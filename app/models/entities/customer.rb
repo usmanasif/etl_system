@@ -26,4 +26,9 @@ class CustomerMapper
     output['name'] = [input['first_name'], input['last_name']].join(' ')
     output
   end
+
+  after_denormalize do |input, output|
+    output['first_name'], output['last_name'] = input['name'].split(' ')
+    output
+  end
 end

@@ -23,6 +23,14 @@ module Entities
         record.save && success_response || failure_response(record)
       end
 
+      def export_file_headers
+        mapper.denormalize(internal_model.first.attributes).keys
+      end
+
+      def export(params)
+        mapper.denormalize(params).values
+      end
+
       def success_response
         { status: :success }
       end

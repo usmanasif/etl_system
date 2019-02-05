@@ -27,4 +27,11 @@ class EventVariationMapper
 
     output
   end
+
+  after_denormalize do |input, output|
+    output['variation_id'] = Service.find_by(id: input['service_id'])&.reference_id
+    output['event_id'] = Appointment.find_by(id: input['appointment_id'])&.reference_id
+
+    output
+  end
 end

@@ -27,4 +27,9 @@ class AppointmentMapper
     output['client_id'] = Client.find_by(reference_id: input['client_id'])&.id
     output
   end
+
+  after_denormalize do |input, output|
+    output['client_id'] = Client.find_by(id: input['client_id'])&.reference_id
+    output
+  end
 end
