@@ -17,7 +17,7 @@
 
 - **Export**
 
-  command:`rake 'export[<export_files_folder>, <mapping_definition>, <company_id>]`'
+  command:`rake 'export[<export_files_folder>, <mapping_definition>, <company_id>]'`
 
   e.g`rake 'export[csv_export_files_1, csv_mapping_1, 1]'`
 
@@ -40,3 +40,12 @@
 | 11 | Usman  | usman@gmail.com | `not_changed` |
 | 66 | Johnson Baby | johnson@gmail.com | `updated` |
 | 88 | Mojo Jojo | jojo@gmail.com | `created` |
+
+### Project Setup
+- `git clone https://github.com/usmanasif/etl_system.git`
+- `rvm install 2.5.3` (Make sure `RVM` is already installed)
+- `gem install bundler`
+- `bundle`
+- `rails db:create`
+- `rails db:migrate`
+- `rails db:seed`
